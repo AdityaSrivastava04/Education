@@ -1,5 +1,6 @@
 # Ignore node_modules for Node.js projects
-node_modules
+./forntEnd/node_modules/
+
 
 # Logs
 logs/
