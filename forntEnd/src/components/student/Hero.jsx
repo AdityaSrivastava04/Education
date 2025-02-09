@@ -1,6 +1,7 @@
 import React from 'react'
 import { assets } from '../../assets/assets'
 import SearchBar from './SearchBar'
+import CoursesSecton from './CoursesSecton'
 
 const Hero = () => {
   return (
