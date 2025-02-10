@@ -15,7 +15,7 @@ const CourseCards = ({course}) => {
         <div className='flex items-center space-x-2'>
           <p>{calculateRating(course)}</p>
           <div className='flex'>
-            {[...Array(5)].map((_,i)=>( <img key={i} src={i<Math.floor(calculateRating(course) ? assets.star : assets.star_blank)} alt='' className='w-3.5 h-3.5'/>))}
+            {[...Array(5)].map((_,i)=>( <img key={i} src={i<Math.floor(calculateRating(course)) ? assets.star : assets.star_blank} alt='' className='w-3.5 h-3.5'/>))}
           </div>
           <p className='text-gray-500'>{course.courseRatings.length}</p>
         </div>
