@@ -4,11 +4,13 @@ import { AppContext } from '../../context/AppContext';
 import Loading from '../../components/student/Loading';
 import { assets } from '../../assets/assets';
 import humanizeDuration from 'humanize-duration';
+import Footer from '../../components/student/Footer';
 
 const CourseDetail = () => {
   const id=useParams()
   const [courseData,setCourseData]=useState(null);
   const [openSections,setOpenSections]=useState({});
+  const [isAlreadyLogin,setisAlreadyLogin]=useState(false);
   const {allCourses,currency,calculateRating,claCulateCourseDuration, claculateNoOfLecture, calculateChapterTime}=useContext(AppContext)
   const featchCoursesData = async ()=>{
     const findCourse=allCourses.find(course=>course._id===id.input )
@@ -107,10 +109,22 @@ const CourseDetail = () => {
                 <p>{claculateNoOfLecture(courseData)}lessons</p>
               </div>
             </div>
+            <button className='md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white font-medium'>{isAlreadyLogin?'Already Enroll':'Enroll Now'}</button>
+            <div className='pt-6'>
+              <p className='md:text-xl text-lg font-medium text-gray-800'>Whats's in the Course?</p>
+              <ul className='ml-4 pt-2 text-sm md:text-default list-disc text-gray-500'>
+                <li>Life time access with free updates.</li>
+                <li>Life time access with free updates.</li>
+                <li>Life time access with free updates.</li>
+                <li>Life time access with free updates.</li>
+                <li>Life time access with free updates.</li>
+              </ul>
+            </div>
         </div>
 
       </div>
     </div>
+    <Footer/>
     </>
   ): <Loading/>
 }
