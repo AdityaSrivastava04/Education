@@ -85,7 +85,7 @@ const CourseDetail = () => {
 
       <div className='max-w-424px z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]'>
       {
-        PlayerData?<YouTube videoId={PlayerData.videoId} pots={{playerVars:{autoplay:1}}}iframeClassName='w-full aspect-video'/> :
+        PlayerData?<YouTube videoId={PlayerData.videoId} opts={{playerVars:{autoplay:1}}}iframeClassName='w-full aspect-video'/> :
         <img src={courseData.courseThumbnail} alt="" />
       }
         <div className='p-5'>

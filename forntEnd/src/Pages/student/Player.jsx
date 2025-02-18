@@ -1,17 +1,38 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
+import { assets } from '../../assets/assets'
+import humanizeDuration from 'humanize-duration'
+import YouTube from 'react-youtube'
+import Footer from '../../components/student/Footer'
 
 const Player = () => {
   const {enrolledCourses,calculateChapterTime}=useContext(AppContext)
   const {courseId}=useParams()
   const[courseData,setCourseData]=useState(null)
+  const [openSection,setOpenSection]=useState({})
+  const [playerData,setPlayerData]=useState(null)
+  const getCourseData=()=>{
+    enrolledCourses.map((course)=>{
+      if(course._id===courseId){
+        setCourseData(course)
+      }
+    })
+  }
+  const toggleSection=(index)=>{
+    setOpenSections((prev)=>(
+      {...prev,[index]: !prev[index],
+
+      }
+    ))
+  }
+  useState(()=>{getCourseData()},[enrolledCourses])
   return (
     <>
       <div className='p-4 sm:p-10 flex flex-col-reverse md:grid md:grid-cols-2 gap-10 md:px-36'>
         <div className='text-gray-800'>
           <h2 className='text-xl font-semibold'>Course Structure</h2>
           <div className='pt-5'>
-            {courseData.courseContent.map((chapter, index) => (
+            {courseData && courseData.courseContent.map((chapter, index) => (
               <div className='border border-gray-300 bg-white mb-2 rounded' key={index}>
                 <div className='flex items-center justify-between px-4 py-3 cursor-pointer select-none' onClick={() => toggleSection(index)}>
                   <div className='flex flex-items-center gap-2'>
@@ -24,11 +45,13 @@ const Player = () => {
                   <ul className='list disc md:pl-10 pl-4 pr-4 py-2 text-gray-600 border-t border-gray-300'>
                     {chapter.chapterContent.map((lecture, i) => (
                       <li key={i} className='flex items-start gap-2 py-1'>
-                        <img src={assets.play_icon} alt="play icon" className='w-4 h-4 mt-1' />
+                        <img src={false? assets.blue_tick_icon:assets.play_icon} alt="play icon" className='w-4 h-4 mt-1' />
                         <div className='flex items-center justify-between w-full text-gray-800 text-xs md:text-default'>
                           <p>{lecture.lectureTitle}</p>
                           <div className='flex gap-2'>
-                            {lecture.isPreviewFree && <p onClick={() => setplayerData({ videoId: lecture.lectureUrl.split('/').pop() })} className='text-blue-500 cursor-pointer'>Preview</p>}
+                            {lecture.lectureUrl && <p onClick={() => setplayerData({ 
+                              ...lecture,chapter:index+1,lecture:i+1
+                            })} className='text-blue-500 cursor-pointer'>Watch</p>}
                             <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, { units: ['h', 'm'] })}</p>
                           </div>
                         </div>
@@ -39,10 +62,26 @@ const Player = () => {
               </div>
             ))}
           </div>
+          <div className='flex items-center gap-2 py-3 mt-10'>
+            <h1 className='text-xl font-bold'>Rate This Course</h1>
+          </div>
         </div>
         {/* Right Column */}
-        <div></div>
+        <div className='md:mt-10'>
+          {playerData?(
+            <div className='flex justify-between items-center mt-1'>
+              <YouTube videoId={PlayerData.lectureUrl.split('/').pop()} iframeClassName='w-full aspect-video'/>
+              <div>
+                <p>{playerData.chapter}.{playerData.lecture} {playerData.lectureTitle}</p>
+                <button className='text-blue-600'>{false?'completed':'Mark complete'}</button>
+              </div>
+            </div>
+          ):
+          <img src={courseData?courseData.courseThumbnail:''} alt="" />
+        }
+        </div>
       </div>
+      <Footer/>
     </>
   )
 }
