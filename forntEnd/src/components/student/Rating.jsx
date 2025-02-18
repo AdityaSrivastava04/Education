@@ -18,7 +18,7 @@ useEffect(()=>{
         return(
           <span key={index} className={`text-xl sm:text-2xl cursor-pointer transition-colors
           ${Starvalue<=rating?'text-yellow-500':'text-gray-400'}`} onClick={()=>handleRating(Starvalue)}>
-            &#9733
+            &#9733;
           </span>
 
         )
