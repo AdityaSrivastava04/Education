@@ -3,7 +3,7 @@ import React from 'react'
 const Student_Enrolled = () => {
   return (
     <div>
-      <h1>STUDENT_ENROLLED</h1>
+      <h1>Student Enrolled</h1>
     </div>
   )
 }
