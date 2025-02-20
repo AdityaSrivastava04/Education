@@ -29,7 +29,7 @@ const App = () => {
         <Route path='/player/:input' element={<Player/>}/>
         <Route path='/loading/:path' element={<Loading/>}/>
         <Route path='/educator' element={<Educator/>}>
-          <Route path='educator' element={<Dashboard/>}/>
+          <Route path='/educator' element={<Dashboard/>}/>
           <Route path='add-course' element={<Add_Course/>}/>
           <Route path='my-courses' element={<My_Course/>}/>
           <Route path='student-enrolled' element={<Student_Enrolled/>}/>
