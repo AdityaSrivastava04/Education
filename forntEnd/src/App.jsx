@@ -12,6 +12,7 @@ import Add_Course from './Pages/educator/Add_Course'
 import My_Course from './Pages/educator/My_Course'
 import Student_Enrolled from './Pages/educator/Student_Enrolled'
 import Navbar from './components/student/Navbar'
+import "quill/dist/quill.snow.css";
 
 const App = () => {
   const isEducator=useMatch('/educator/*')

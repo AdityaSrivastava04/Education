@@ -20,7 +20,7 @@ const Dashboard = () => {
               <div className='flex items-center gap-3 shadow-card border border-blue-500 p-4 w-56 rounded-md'>
                 <img src={assets.patients_icon} alt=" patient_icon" />
                 <div>
-                  <p className='text-2xl font-medium text-gray-600'>{dashboardData.enrolledStudentsData}</p>
+                  <p className='text-2xl font-medium text-gray-600'>{dashboardData.enrolledStudentsData.length}</p>
                   <p className='text-base text-gray-500'>Total Enrolment</p>
                 </div>
               </div>
