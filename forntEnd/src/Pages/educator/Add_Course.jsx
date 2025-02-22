@@ -127,7 +127,7 @@ const Add_Course = () => {
           <input type='number' onChange={e => setDiscount(e.target.value)} value={discount} placeholder='0' min={0} max={100} className='outline-none ms:py-2.5 py-2 w-28 px-3 rounded border border-gray-500' required />
 
         </div>
-
+{/* add */}
         <div >
           {chapters.map((chapter, chapterIndex) => (
             <div key={chapterIndex} className='bg-white border rounded-lg mb-4'>
@@ -144,7 +144,7 @@ const Add_Course = () => {
                   {chapter.chapterContent.map((lecture, lectureIndex) => (
                     <div key={lectureIndex} className=' flex justify-between items-center md-2'>
                       <span>{lectureIndex + 1}{lecture.lectureTitle}-{lecture.lectureDuration} mins -
-                         <a href={lecture.lectureUrl}target='_blank' className='text-blue-500' >Link</a> - 
+                        <a href={lecture.lectureUrl} target='_blank' className='text-blue-500' >Link</a> -
                         {lecture.isPreviewFree ? 'Free Preview' : 'Paid'}</span>
                       <img src={assets.cross_icon} alt="" className='cursor-pointer' onClick={() => handleLecture('remove', chapter.chapterId, lectureIndex)} />
 
@@ -185,7 +185,7 @@ const Add_Course = () => {
                   value={lectureDetails.isPreviewFree}
                   onChange={(e) => setLectureDetails({ ...lectureDetails, isPreviewFree: e.target.value })} />
               </div>
-              <button type='button' className='w-full bg-blue-400 text-white px-4 py-2 rounded' onClick={addLecture()}>Add</button>
+              <button type='button' className='w-full bg-blue-400 text-white px-4 py-2 rounded' onClick={()=>addLecture()}>Add</button>
               <img src={assets.cross_icon} onClick={() => setShowPopUp(false)} className='absolute top-4 right-4 w-4 cursor-pointer' alt="" />
             </div>
           </div>
